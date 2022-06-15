@@ -11,6 +11,6 @@ namespace WebAppManageUsers.Data.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Name { get; set; }
 
-        public Country Countries { get; set; }
+        public Country Country { get; set; }
     }
 }
