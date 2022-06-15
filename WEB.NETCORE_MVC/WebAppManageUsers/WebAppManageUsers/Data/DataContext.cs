@@ -15,12 +15,14 @@ namespace WebAppManageUsers.Data
 
         // Entidad mapeada, por lo general el nombre es prural "Countires"
         public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         // 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<City>().HasIndex("Name", "CountryId").IsUnique();
         }
 
     }
