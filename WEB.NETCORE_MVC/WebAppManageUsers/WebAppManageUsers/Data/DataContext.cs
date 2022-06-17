@@ -16,6 +16,7 @@ namespace WebAppManageUsers.Data
         // Entidad mapeada, por lo general el nombre es prural "Countires"
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public DbSet<State> States { get; set; }
 
         // 
@@ -25,6 +26,7 @@ namespace WebAppManageUsers.Data
             modelBuilder.Entity<Country>().HasIndex(c => c.Name).IsUnique();
             modelBuilder.Entity<State>().HasIndex("Name", "CountryId").IsUnique();
             modelBuilder.Entity<City>().HasIndex("Name", "StateId").IsUnique();
+            modelBuilder.Entity<Client>().HasIndex("Name", "CityId").IsUnique();
         }
 
     }

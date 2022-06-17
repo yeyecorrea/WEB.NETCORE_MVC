@@ -47,6 +47,47 @@ namespace WebAppManageUsers.Migrations
                     b.ToTable("Cities");
                 });
 
+            modelBuilder.Entity("WebAppManageUsers.Data.Entities.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Nit")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("Name", "CityId")
+                        .IsUnique();
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("WebAppManageUsers.Data.Entities.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -105,6 +146,17 @@ namespace WebAppManageUsers.Migrations
                     b.Navigation("State");
                 });
 
+            modelBuilder.Entity("WebAppManageUsers.Data.Entities.Client", b =>
+                {
+                    b.HasOne("WebAppManageUsers.Data.Entities.City", "City")
+                        .WithMany("Client")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("WebAppManageUsers.Data.Entities.State", b =>
                 {
                     b.HasOne("WebAppManageUsers.Data.Entities.Country", "Country")
@@ -114,6 +166,11 @@ namespace WebAppManageUsers.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("WebAppManageUsers.Data.Entities.City", b =>
+                {
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("WebAppManageUsers.Data.Entities.Country", b =>
