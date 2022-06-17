@@ -14,9 +14,9 @@ namespace WebAppManageUsers.Data.Entities
         [Required(ErrorMessage ="El campo {0} es obligatorio")]
         public string Name { get; set; }
 
-        public ICollection<City> Cities { get; set; }
+        public ICollection<State> States { get; set; }
 
-        [Display(Name = "Ciudades")]
-        public int CitiesNumber => Cities == null ? 0 : Cities.Count;
+        [Display(Name = "Estados/Departamentos")]
+        public int StatesNumber => States == null ? 0 : States.Count;
     }
 }
