@@ -15,6 +15,7 @@ namespace WebAppManageUsers.Data.Entities
 
         public ICollection<City> Cities  { get; set; }
 
+        [Display(Name = "Ciudades")]
         public int CitiesNumber => Cities == null ? 0 : Cities.Count;
     }
 }

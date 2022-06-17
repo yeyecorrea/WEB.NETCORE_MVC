@@ -12,5 +12,10 @@ namespace WebAppManageUsers.Data.Entities
         public string Name { get; set; }
 
         public State State { get; set; }
+
+        public ICollection<Client> Client { get; set; }
+
+        [Display(Name = "Clientes")]
+        public int ClientNumber => Client == null ? 0 : Client.Count;
     }
 }
